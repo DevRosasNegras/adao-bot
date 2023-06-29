@@ -1,5 +1,1 @@
-<div align="center">
-  
-  ## Bot Discord Titania
-    
-</div>
+## Bot Discord Titania
