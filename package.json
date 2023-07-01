@@ -1,0 +1,17 @@
+{
+  "name": "titania-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "glob": "^10.3.1",
+    "mongoose": "^7.3.1"
+  }
+}
