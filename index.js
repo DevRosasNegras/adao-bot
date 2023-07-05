@@ -12,6 +12,7 @@ db.connect();
 
 client.login(config.token)
 
+// carregador e Gerenciador de eventos.
 const eventsPath = path.join(__dirname, './src/Events');
 const eventFiles = glob.sync('**/*.js', { cwd: eventsPath });
 
@@ -25,7 +26,7 @@ for (const file of eventFiles) {
     }
 }
 
-// Carregar e gerencia os comandos gerais do bot.
+// Carregar e gerencia os comandos de prefix do boaddt
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.categories = fs.readdirSync(`./src/Commands/Prefix/`);
