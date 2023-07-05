@@ -1,28 +1,28 @@
 const Discord = require("discord.js")
 
 module.exports = {
-    data: new Discord.SlashCommandBuilder()
-        .setName("ping") // Coloque o nome do comando
-        .setDescription("Veja o ping do bot."), // Coloque a descrição do comando
+  name: "ping", // Coloque o nome do comando
+  description: "Veja o ping do bot.", // Coloque a descrição do comando
+  type: Discord.ApplicationCommandType.ChatInput,
 
-    async(interaction) {
+  run: async (client, interaction) => {
 
-        let ping = client.ws.ping;
+    let ping = client.ws.ping;
 
-        let embed_1 = new Discord.EmbedBuilder()
-            .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription(`Olá ${interaction.user}, meu ping está em \`calculando...\`.`)
-            .setColor("DarkPurple");
+    let embed_1 = new Discord.EmbedBuilder()
+    .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+    .setDescription(`Olá ${interaction.user}, meu ping está em \`calculando...\`.`)
+    .setColor("Purple");
 
-        let embed_2 = new Discord.EmbedBuilder()
-            .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription(`Olá ${interaction.user}, meu ping está em \`${ping}ms\`.`)
-            .setColor("Purple");
+    let embed_2 = new Discord.EmbedBuilder()
+    .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+    .setDescription(`Olá ${interaction.user}, meu ping está em \`${ping}ms\`.`)
+    .setColor("DarkPurple");
 
-        interaction.reply({ embeds: [embed_1] }).then(() => {
-            setTimeout(() => {
-                interaction.editReply({ embeds: [embed_2] })
-            }, 2000)
-        })
-    }
+    interaction.reply({ embeds: [embed_1] }).then( () => {
+        setTimeout( () => {
+            interaction.editReply({ embeds: [embed_2] })
+        }, 2000)
+    })
+  }
 }
