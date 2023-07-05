@@ -26,7 +26,7 @@ for (const file of eventFiles) {
     }
 }
 
-// Carregar e gerencia os comandos de prefix do boaddt
+// Carregar e gerencia os comandos de prefix do bot
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.categories = fs.readdirSync(`./src/Commands/Prefix/`);
@@ -69,3 +69,23 @@ client.on("messageCreate", async (message) => {
     
 });
 
+module.exports = client
+
+client.on('interactionCreate', (interaction) => {
+
+  if(interaction.type === Discord.InteractionType.ApplicationCommand){
+
+      const cmd = client.slashCommands.get(interaction.commandName);
+
+      if (!cmd) return interaction.reply(`Error`);
+
+      interaction["member"] = interaction.guild.members.cache.get(interaction.user.id);
+
+      cmd.run(client, interaction)
+
+   }
+})
+
+client.slashCommands = new Discord.Collection()
+
+require('./src/handler')(client)
