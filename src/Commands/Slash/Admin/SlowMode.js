@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
 
 module.exports = {
-  name: "", // Coloque o nome do comando
-  description: "", // Coloque a descrição do comando
+  name: "slowmode", // Coloque o nome do comando
+  description: "Configure o modo lento em um canal de texto.", // Coloque a descrição do comando
   type: Discord.ApplicationCommandType.ChatInput,
 
   options: [
