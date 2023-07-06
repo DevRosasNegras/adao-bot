@@ -93,5 +93,4 @@ client.on('interactionCreate', (interaction) => {
 })
 
 client.slashCommands = new Discord.Collection()
-
 require('./src/handler')(client)
