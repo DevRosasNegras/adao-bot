@@ -4,18 +4,17 @@ module.exports = {
   name: "slowmode", // Coloque o nome do comando
   description: "Configure o modo lento em um canal de texto.", // Coloque a descrição do comando
   type: Discord.ApplicationCommandType.ChatInput,
-
   options: [
     {
       name: "tempo",
       description: "Coloque o tempo do modo lento [s|m|h].",
-      type: Discord.ApplicationCommandOptionType.STRING,
+      type: Discord.ApplicationCommandOptionType.String,
       required: true // Define se a opção é obrigatória ou não
     },
     {
         name: "canal",
         description: "Mencione um canal de texto.",
-        type: Discord.ApplicationCommandOptionType.STRING,
+        type: Discord.ApplicationCommandOptionType.Channel,
         required: false // Define se a opção é obrigatória ou não
       }
   ],
