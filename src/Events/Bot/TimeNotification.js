@@ -13,22 +13,25 @@ module.exports = {
         // Envia a primeira mensagem imediatamente
         sendMessage(channel);
 
-        // Define o intervalo para enviar uma mensagem a cada uma hora
+        // Define o intervalo para enviar uma mensagem a cada 10 segundos
         interval = setInterval(() => {
             sendMessage(channel);
-        }, 60 * 60 * 1000); // 1 hora em milissegundos
+        }, 10 * 1000); // 10 segundos em milissegundos
     },
 };
 
 function sendMessage(channel) {
-    // Calcula o número de horas desde o último reinício do bot
+    // Calcula o tempo de atividade do bot
     const uptime = getBotUptime();
+
+    // Formata o tempo de atividade no formato "Dias HH:MM:SS"
+    const formattedUptime = formatUptime(uptime);
 
     // Cria uma embed para enviar no canal
     const embed = new Discord.EmbedBuilder()
-        .setColor('Purple')
+        .setColor('#0099ff')
         .setTitle('Tempo de atividade do bot')
-        .setDescription(`O bot está ligado há ${uptime} horas.`)
+        .setDescription(`O bot está online há:\n\nDias         Horas\n${formattedUptime}`)
         .setTimestamp();
 
     try {
@@ -40,6 +43,17 @@ function sendMessage(channel) {
 
 function getBotUptime() {
     const totalSeconds = process.uptime();
-    const hours = Math.floor(totalSeconds / 3600);
-    return hours;
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor(((totalSeconds % 86400) % 3600) / 60);
+    const seconds = Math.floor(((totalSeconds % 86400) % 3600) % 60);
+    return { days, hours, minutes, seconds };
+}
+
+function formatUptime(uptime) {
+    const { days, hours, minutes, seconds } = uptime;
+    const formattedHours = hours.toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedSeconds = seconds.toString().padStart(2, '0');
+    return `${days}          ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
