@@ -67,7 +67,7 @@ client.on("messageCreate", async (message) => {
             console.error('Erro:' + err);
         }
     
-        const resposta = "sim"; // Resposta do usuário (sim ou não)
+        const resposta = "não"; // Resposta do usuário (sim ou não)
 
         if (resposta.toLowerCase() === "sim") {
             message.delete().catch(console.error);
