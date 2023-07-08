@@ -16,7 +16,7 @@ module.exports = {
         // Define o intervalo para enviar uma mensagem a cada 10 segundos
         interval = setInterval(() => {
             sendMessage(channel);
-        }, 10 * 1000); // 10 segundos em milissegundos
+        }, 60 * 60 * 1000); // 10 segundos em milissegundos
     },
 };
 
